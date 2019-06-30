@@ -6,3 +6,5 @@ foo.sh
 a.out 
 khanj
 build/
+*.exe
+cmake-build-default/

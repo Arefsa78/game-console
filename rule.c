@@ -23,6 +23,8 @@ int parser(char *line, Rule *rule) {
         sscanf(line, "solidblock=%c", &(rule->solid_block));
     else if (compare(left, "deathblock"))
         sscanf(line, "deathblock=%c", &(rule->death_block));
+    else if (compare(left, "raindb"))
+        sscanf(line, "raindb=%d", &(rule->raindb));
     else if (compare(left, "moveblock"))
         sscanf(line, "moveblock=%c", &(rule->move_block));
     else if (compare(left, "wall"))
@@ -58,6 +60,7 @@ int parser(char *line, Rule *rule) {
 void init_rule(Rule *rule) {
     rule->solid_block = NOT_DEFINE;
     rule->death_block = NOT_DEFINE;
+    rule->raindb = NOT_DEFINE;
     rule->move_block = NOT_DEFINE;
     rule->wall = NOT_DEFINE;
     rule->charecter = NOT_DEFINE;

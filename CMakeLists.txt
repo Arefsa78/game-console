@@ -4,4 +4,4 @@ project(game_console)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(game_console
-        README.md main.c rule.h rule.c etc.h etc.c)
+        README.md main.c rule.h rule.c etc.h etc.c map.h map.c)

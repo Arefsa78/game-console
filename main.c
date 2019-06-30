@@ -2,12 +2,12 @@
 // Created by Aref on 19/06/29.
 //
 #include <stdio.h>
-#include "vector.h"
+#include "game.h"
 
 int main() {
-    Vector *foo = NULL;
-    foo = pushback(foo, sizeof(int));
-    *(int*)index(foo, 0, sizeof(int)) = 5;
-    printf("%d", *(int*)(index(foo, 0, sizeof(int))));
-    return 0;
+    char x[20], y[20];
+    scanf("%s %s", x, y);
+    printf("x: %s\ny: %s\n*******\n", x, y);
+    char* r = strcat(x, y);
+    printf("x: %s\ny: %s\nr: %s", x, y, r);
 }

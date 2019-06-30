@@ -10,10 +10,28 @@
 #include "objects.h"
 #include "vector.h"
 
+typedef struct Game Game;
+
 struct Game{
     Rule* rule;
     Map* map;
-    Vector solidBlock;
+    Vector solidBlocks;
+    Vector deathBlocks;
+    Vector raindbs;
+    Vector move_blocks;
+    Vector walls;
+    Vector rpoints;
+    Vector opps;
+
+    Object player;
+    Object target;
+    Object object;
+
+    Time time;
+
+    int score;
 };
+
+void init_game(Game* game, char* game_name);
 
 #endif //GAME_CONSOLE_GAME_H

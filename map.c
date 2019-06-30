@@ -7,7 +7,7 @@
 #include "etc.h"
 #include <time.h>
 
-int set_map(Map *map, FILE *file)
+int init_map(FILE *file, Map *map)
 {
     char line[20];
     get_line(file, line);

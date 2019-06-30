@@ -7,7 +7,9 @@
 #ifndef GAME_CONSOLE_RULE_H
 #define GAME_CONSOLE_RULE_H
 
-typedef struct Rules Rule;
+#define NOT_DEFINE -405
+
+typedef struct Rule Rule;
 typedef struct Point_R Point_R;
 typedef struct Opp_R Opp_R;
 typedef struct Put_R Put_R;
@@ -34,6 +36,7 @@ struct Rule{
     int death_block;
     int move_block;
     int wall;
+
     int charecter;
     int target;
     int object;
@@ -50,5 +53,6 @@ struct Rule{
 
 int set_rules(FILE* file, Rule* rule);
 int parser(char* line, Rule* rule);
+void init_rule(Rule* rule);
 
 #endif //GAME_CONSOLE_RULE_H

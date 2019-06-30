@@ -1,2 +1,7 @@
 .idea/
 cmake-build-debug/
+.vscode/
+makefile
+foo.sh
+a.out 
+khanj

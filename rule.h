@@ -32,23 +32,23 @@ struct Put_R{
 };
 
 struct Rule{
-    int solid_block;
-    int death_block;
-    int move_block;
-    int wall;
+    int solid_block;//
+    int death_block;//
+    int move_block;//
+    int wall;//
 
-    int charecter;
-    int target;
-    int object;
+    int charecter;//
+    int target;//
+    int object;//
 
     int up, down, left, right;
     int exit;
     int time;
-    int attack_range;
+    int attack_range;//
 
-    Point_R rpoints;
-    Opp_R opp;
-    Put_R put;
+    Point_R rpoints;//
+    Opp_R opp;//
+    Put_R put;//
 };
 
 int set_rules(FILE* file, Rule* rule);

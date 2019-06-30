@@ -34,6 +34,7 @@ struct Put_R{
 struct Rule{
     int solid_block;
     int death_block;
+    int raindb;
     int move_block;
     int wall;
 

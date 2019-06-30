@@ -32,6 +32,7 @@ struct Put_R{
 };
 
 struct Rule{
+    char game_name[20];
     int solid_block;//
     int death_block;//
     int raindb;

@@ -15,7 +15,7 @@ struct Map {
     int **field;
 };
 
-int set_map(Map *map, FILE *file);
+int init_map(FILE *file, Map *map);
 void test_init(Map* map, int height, int width);
 
 #endif //GAME_CONSOLE_MAP_H

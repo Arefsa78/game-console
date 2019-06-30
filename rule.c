@@ -5,11 +5,11 @@
 #include "rule.h"
 #include "etc.h"
 
-int set_rules(FILE *file, Rule *rule) {
+int init_rule(FILE *file, Rule *rule) {
     char line[50];
-    while (get_line(file, line)) {
-
-    }
+    while (get_line(file, line))
+        parser(line, rule);
+    return 1;
 }
 
 int parser(char *line, Rule *rule) {
@@ -57,7 +57,7 @@ int parser(char *line, Rule *rule) {
         sscanf(line, "put=%c,%c,%d", &(rule->put.control), &(rule->put.charecter), &(rule->put.number));
 }
 
-void init_rule(Rule *rule) {
+void init_rule2(Rule *rule) {
     rule->solid_block = NOT_DEFINE;
     rule->death_block = NOT_DEFINE;
     rule->raindb = NOT_DEFINE;

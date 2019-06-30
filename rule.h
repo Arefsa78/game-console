@@ -32,8 +32,10 @@ struct Put_R{
 };
 
 struct Rule{
+    char game_name[20];
     int solid_block;//
     int death_block;//
+    int raindb;
     int move_block;//
     int wall;//
 
@@ -51,8 +53,8 @@ struct Rule{
     Put_R put;//
 };
 
-int set_rules(FILE* file, Rule* rule);
+int init_rule(FILE *file, Rule *rule);
 int parser(char* line, Rule* rule);
-void init_rule(Rule* rule);
+void init_rule2(Rule *rule);
 
 #endif //GAME_CONSOLE_RULE_H

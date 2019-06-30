@@ -5,3 +5,4 @@ makefile
 foo.sh
 a.out 
 khanj
+build/

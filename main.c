@@ -3,7 +3,7 @@
 //
 #include <stdio.h>
 
-int main(){
-    printf("HI");
-    return 0;
-}
+// int main(){
+//     printf("HI");
+//     return 0;
+// } khanj

@@ -5,12 +5,16 @@
 #ifndef GAME_CONSOLE_MAP_H
 #define GAME_CONSOLE_MAP_H
 
-typedef struct Map Map; 
+#include <stdio.h>
 
-struct Map{
+typedef struct Map Map;
+
+struct Map {
     int width;
     int height;
-    int** field;
+    int **field;
 };
+
+int set_map(Map *map, FILE *file);
 
 #endif //GAME_CONSOLE_MAP_H

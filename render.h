@@ -8,7 +8,7 @@ typedef struct Point Point;
 
 struct Point{
     int x,y;
-}
+};
 struct Cell
 {
     Point point;

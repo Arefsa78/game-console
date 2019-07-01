@@ -8,3 +8,4 @@ khanj
 build/
 *.exe
 cmake-build-default/
+move.o

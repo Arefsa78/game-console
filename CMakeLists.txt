@@ -18,4 +18,4 @@ add_executable(game_console
         rule.c
         rule.h
         vector.c
-        vector.h)
+        vector.h move.h run.c run.h)

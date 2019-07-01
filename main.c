@@ -2,12 +2,12 @@
 // Created by Aref on 19/06/29.
 //
 #include <stdio.h>
+#include <malloc.h>
 #include "game.h"
 
 int main() {
-    char x[20], y[20];
-    scanf("%s %s", x, y);
-    printf("x: %s\ny: %s\n*******\n", x, y);
-    char* r = strcat(x, y);
-    printf("x: %s\ny: %s\nr: %s", x, y, r);
+    Game *game = (Game *) malloc(sizeof(Game));
+    init_game(game, game_name); //input
+    run_game(game);
+    ini
 }

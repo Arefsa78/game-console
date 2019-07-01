@@ -29,6 +29,7 @@ struct MoveAction{
 struct AttackAction{
     char control;
     int range;
+    int flag;
 };
 
 struct Time{

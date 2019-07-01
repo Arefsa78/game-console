@@ -1,6 +1,6 @@
 #include "objects.c"
 
-void getkey(MoveAction ma){
+void getkey(MoveAction ma,AttackAction att){
 
     char c;
     if (kbhit()) {
@@ -26,10 +26,10 @@ void getkey(MoveAction ma){
                 ma.control = 'p';//put
                 break;
             case key.a:
-                ma.control = 'a';//atack
+                att.flag = 1;//atack
                 break;
             case key.e:
-                ma.control = 'e';//exit
+                 = 'e';//exit
 
         }
     }
@@ -42,7 +42,94 @@ void puter(struct Put put, int x,int y,char** map){// prototype baraye function 
     }
 }
 
-void movefunction(MoveAction ma, Object obj,char** map, struct Put put){
+void attack(MoveAction ma,AttackAction att,Object obj, char** map){
+
+    int objx=obj.point.x;
+    int objy=obj.point.x;
+    int attx=0;
+    int atty=0;
+
+    switch(ma.control){
+
+        case 'l':
+
+            attx=objx-att.range;
+            if(attx<0)
+                attx=0;
+
+            for(;attx<objx;attx++){
+                if(map[attx][objy]==DeathBlock.name){
+                    map[attx][objy]=' ';
+                }
+                if(map[attx][objy]==opp.name){
+                    map[attx][objy]=' ';
+                    end(Character);
+                }
+                else
+                    continue;
+            }
+            break;
+
+        case 'r':
+
+            attx=objx+att.range;
+            if(attx>maxx)//maxx bishtarin x baraye map
+                attx=maxx;
+
+            for(;attx>objx;attx--){
+                if(map[attx][objy]==DeathBlock.name){
+                    map[attx][objy]=' ';
+                }
+                if(map[attx][objy]==opp.name){
+                    map[attx][objy]=' ';
+                    end(Character);
+                }
+                else
+                    continue;
+            }
+            break;
+
+        case 'u':
+
+            atty=objy+att.range;
+            if(atty>maxy)
+                atty=maxy;
+
+            for(;atty>objy;atty--){
+                if(map[objx][atty]==DeathBlock.name){
+                    map[objx][atty]=' ';
+                }
+                if(map[objx][atty]==opp.name){
+                    map[objx][atty]=' ';
+                    end(Character);
+                }
+                else
+                    continue;
+            }
+            break;
+        case 'd':
+
+            atty=objy-att.range;
+            if(atty<0)
+                atty=0;
+
+            for(;atty<objy;atty++){
+                if(map[objx][atty]==DeathBlock.name){
+                    map[objx][atty]=' ';
+                }
+                if(map[objx][atty]==opp.name){
+                    map[objx][atty]=' ';
+                    end(Character);
+                }
+                else
+                    continue;
+            }
+            break;
+
+    }
+}
+
+void movefunction(MoveAction ma,AttackAction att, Object obj,char** map, struct Put put){
     int objx=obj.point.x;
     int objy=obj.point.y;
     //char* objn=obj.charecter;
@@ -50,6 +137,11 @@ void movefunction(MoveAction ma, Object obj,char** map, struct Put put){
     //map ro nemidoonam chetor tarif kardi haghighatan :|
     //struct haye block ha ham hamintor...
     //function end age dakhelesh opp bashe harif borde age Character bashe player borde va age game bashe neshoone exit kardan az bazie.
+
+    if(att.flag == 1){
+        attack(ma,att,obj,char** map);
+        att.flag = 0;
+    }
 
     switch(ma.control){
         case 'l':
@@ -145,8 +237,6 @@ void movefunction(MoveAction ma, Object obj,char** map, struct Put put){
         case 'p':
             puter(put,objx,objy,map);
 
-        case 'a':
-            //atack();
         case 'e':
             end(game);
 

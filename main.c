@@ -8,12 +8,18 @@
 #include "game.h"
 #include "vector.h"
 #include "gamelist.h"
+#include "run.h"
 
 int main() {
     Vector* game_list = NULL;
-    show_games("Games/", game_list);
+    if(!show_games("Games/", game_list)){
+        printf("Game Directory not found!");
+        return 0;
+    }
 
     int n = choose_game(game_list);
 
-    init_game();
+    Game* game =  (Game*)malloc(sizeof(Game));
+    init_game(game, (char*)index(game_list, n, sizeof(char*)));
+    run_game(game);
 }

@@ -21,9 +21,18 @@ Vector *pushback(Vector *head, int data_size) {
 }
 
 void *index(Vector *head, int i, int data_size) {
-    while (i--)
-        head = head->next;
-    return head->data;
+//    while (i--)
+//        head = head->next;
+//    return head->data;
+    int j = 0;
+    for(Vector* it = head; it != NULL; it = it->next){
+        if(it->data == NULL)
+            continue;
+        if(j == i)
+            return it->data;
+        j += 1;
+    }
+    return NULL;
 }
 
 int lenght_list(Vector *head) {

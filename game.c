@@ -151,6 +151,7 @@ void opps_move(Game *game) {
     Vector* opps = game->opps;
     for(Vector* it = opps; it != NULL; it = it->next){
         Object* opp = (Object*)it->data;
+        choose_dir(opp, find_nearest(game->map, opp->point, game->rule->opp.target), game);
         move_object(opp, game);
     }
 }

@@ -48,3 +48,7 @@ int same_point(Point a, Point b) {
     return a.x == b.x && a.y == b.y;
 }
 
+void choose_dir(Object *opp, Point target, Game *game) {
+
+    opp->move_dir.move = INVALID_POINT;// tahesh bayad opp.move_dir ro avaz konii MERCIIIIII :)
+}

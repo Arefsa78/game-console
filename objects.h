@@ -49,5 +49,6 @@ void move_object(Object* obj, Game* game);
 Point plus_point(Point a, Point b);
 void move_another(Object* obj, Game* game);
 int same_point(Point a, Point b);
+void choose_dir(Object* opp, Point target, Game* game);
 
 #endif //GAME_CONSOLE_OBJECTS_H

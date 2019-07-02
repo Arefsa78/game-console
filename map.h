@@ -19,5 +19,6 @@ struct Map {
 int init_map(FILE *file, Map *map);
 void test_init(Map* map, int height, int width);
 int cell(Map* map, Point x);
+Point find_nearest(Map* map, Point start, char c);
 
 #endif //GAME_CONSOLE_MAP_H

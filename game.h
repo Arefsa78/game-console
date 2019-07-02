@@ -40,4 +40,5 @@ void next_frame(Game *game);
 
 void opps_move(Game* game);
 
+void opps_decision(Game *game);
 #endif //GAME_CONSOLE_GAME_H

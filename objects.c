@@ -31,6 +31,7 @@ void move_another(Object *obj, Game *game) {
         return;
     }
     for (Vector *it = game->move_blocks; it != NULL; it = it->next) {
+        if(it->data == NULL) continue;
         Object* block_obj = (Object *) it->data;
         if (same_point(block_obj->point, obj->point)) {
             block_obj->move_dir = obj->move_dir;

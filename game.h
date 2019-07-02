@@ -34,15 +34,14 @@ struct Game {
 
 void init_game(Game *game, char *game_name);
 
-void init_game_with_map(Game* game);
+void init_game_with_map(Game *game);
 
 void next_frame(Game *game);
 
-void opps_move(Game* game);
+void opps_move(Game *game);
 
-void raindbs_move(Game* game);
+void raindbs_move(Game *game);
 
-void opps_decision(Game *game);
+void make_raindb(Game *game);
 
-void make_raindb(Game* game);
 #endif //GAME_CONSOLE_GAME_H

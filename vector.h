@@ -14,5 +14,6 @@ struct Vector {
 
 Vector *pushback(Vector *head, int data_size);
 void *index(Vector *head, int i, int data_size);
+int lenght_list(Vector* head);
 
 #endif //GAME_CONSOLE_VECTOR_H

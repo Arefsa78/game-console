@@ -13,6 +13,14 @@ void init_game(Game *game, char *game_name) {
     FILE *rules_file = fopen(strcat("game-", game_name), "r");
     FILE *map_file = fopen(strcat("map-", game_name), "r");
 
+    game->solidBlocks = pushback(game->solidBlocks, 0);
+    game->deathBlocks = pushback(game->deathBlocks, 0);
+    game->raindbs = pushback(game->raindbs, 0);
+    game->move_blocks = pushback(game->move_blocks, 0);
+    game->walls = pushback(game->walls, 0);
+    game->rpoints = pushback(game->rpoints, 0);
+    game->opps = pushback(game->opps, 0);
+
     init_rule(rules_file, game->rule);
     init_map(map_file, game->map);
     init_game_with_map(game);
@@ -137,7 +145,7 @@ void init_game(Game *game, char *game_name) {
 //}
 
 void next_frame(Game *game) {
-    opps_decision(game);
+    opps_move(game);
     move_object(game->player, game);
     opps_move(game);
     raindbs_move(game);
@@ -147,6 +155,7 @@ void next_frame(Game *game) {
 void opps_move(Game *game) {
     Vector *opps = game->opps;
     for (Vector *it = opps; it != NULL; it = it->next) {
+        if(it->data == NULL) continue;
         Object *opp = (Object *) it->data;
         choose_dir(opp, find_nearest(game->map, opp->point, game->rule->opp.target), game);
         move_object(opp, game);
@@ -203,18 +212,19 @@ void init_game_with_map(Game *game) {
 }
 
 void raindbs_move(Game *game) {
-    Vector* raindbs = game->raindbs;
-    for(Vector* it = raindbs; it != NULL; it = it->next){
-        Object* raindb = (Object*)it->data;
+    Vector *raindbs = game->raindbs;
+    for (Vector *it = raindbs; it != NULL; it = it->next) {
+        if(it->data == NULL) continue;
+        Object *raindb = (Object *) it->data;
         move_object(raindb, game);
     }
 }
 
 void make_raindb(Game *game) {
-    for(int i = 0; i < game->rule->raindb; i++){
-        Object* new_db = (Object*)malloc(sizeof(Object));
-        new_db->charecter = (char)game->rule->death_block;
-        new_db->move_dir.move = (Point){0, 1};
-        new_db->point = (Point){rand()%game->map->width, 0};
+    for (int i = 0; i < game->rule->raindb; i++) {
+        Object *new_db = (Object *) malloc(sizeof(Object));
+        new_db->charecter = (char) game->rule->death_block;
+        new_db->move_dir.move = (Point) {0, 1};
+        new_db->point = (Point) {rand() % game->map->width, 0};
     }
 }

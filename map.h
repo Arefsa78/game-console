@@ -6,6 +6,7 @@
 #define GAME_CONSOLE_MAP_H
 
 #include <stdio.h>
+#include "objects.h"
 
 typedef struct Map Map;
 
@@ -17,5 +18,6 @@ struct Map {
 
 int init_map(FILE *file, Map *map);
 void test_init(Map* map, int height, int width);
+int cell(Map* map, Point x);
 
 #endif //GAME_CONSOLE_MAP_H

@@ -53,8 +53,11 @@ struct Rule{
     Put_R put;//
 };
 
+
 int init_rule(FILE *file, Rule *rule);
 int parser(char* line, Rule* rule);
 void init_rule2(Rule *rule);
+int can_go(Rule* rule, char c);
+int die(Rule* rule, char c)
 
 #endif //GAME_CONSOLE_RULE_H

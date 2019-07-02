@@ -12,9 +12,9 @@
 
 typedef struct Game Game;
 
-struct Game{
-    Rule* rule;
-    Map* map;
+struct Game {
+    Rule *rule;
+    Map *map;
     Vector solidBlocks;
     Vector deathBlocks;
     Vector raindbs;
@@ -32,6 +32,8 @@ struct Game{
     int score;
 };
 
-void init_game(Game* game, char* game_name);
+void init_game(Game *game, char *game_name);
+
+void next_frame(Game *game);
 
 #endif //GAME_CONSOLE_GAME_H

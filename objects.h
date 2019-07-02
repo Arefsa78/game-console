@@ -6,6 +6,9 @@
 #define GAME_CONSOLE_OBJECTS_H
 
 #include <time.h>
+#include "map.h"
+
+#define INVALID_POINT (Point){0, 0};
 
 typedef struct Point Point;
 typedef struct Object Object;
@@ -42,5 +45,7 @@ struct Time{
 };
 
 void init_move(MoveAction* move, Point point, char r);
+void move_object(Object* obj, Map* map, Rule* rule);
+Point plus(Point a, Point b);
 
 #endif //GAME_CONSOLE_OBJECTS_H

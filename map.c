@@ -33,3 +33,7 @@ void test_init(Map *map, int height, int width)
             map->field[i][j] = (rand() % 26) + 'A';
     }
 }
+
+int cell(Map *map, Point x) {
+    return map->field[x.y][x.x];
+}

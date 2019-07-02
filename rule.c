@@ -77,3 +77,17 @@ void init_rule2(Rule *rule) {
     rule->opp = (Opp_R) {NOT_DEFINE, NOT_DEFINE};
     rule->put = (Put_R) {NOT_DEFINE, NOT_DEFINE, NOT_DEFINE};
 }
+
+int can_go(Rule *rule, char c) {
+    if (c == rule->solid_block)
+        return 0;
+    if(c == rule->wall)
+        return 0;
+    return 1;
+}
+
+int die(Rule *rule, char c) {
+    if(c == rule->death_block)
+        return 1;
+    return 0;
+}

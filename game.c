@@ -42,39 +42,88 @@ void best_move(Game *game, struct Point dir, struct Map map){
     int oppy=game->opps.y;
     int distx= abs(oppx-dir.x);
     int disty=abs(oppy-dir.y);
+    char** mapdir=map->field;
 
     if(oppx=<dir.x){
         if(oppy<=dir.y){
             if(distx<=disty){
-                //move right
+                if(mapdir[oppx+1][oppy]==' '){
+                    //move right
+                }
+                if(mapdir[oppx+1][oppy]==MoveBlock.name){
+                    //move both right
+                }
+                continue;
             }
             else{
-                //move up
+                if(mapdir[oppx][oppy+1]==' '){
+                    //move up
+                }
+                if(mapdir[oppx][oppy+1]==Moveblock.name){
+                    //move both up
+                }
+                continue;
             }
         else{
             if(distx<=disty){
-                //move right
+                if(mapdir[oppx+1][oppy]==' '){
+                    //move right
+                }
+                if(mapdir[oppx+1][oppy]==MoveBlock.name){
+                    //move both right
+                }
+                continue;
             }
             else{
-                //move down
+                if(mapdir[oppx][oppy-1]==' '){
+                    //move down
+                }
+                if(mapdir[oppx][oppy-1]==MoveBlock.name){
+                    //move both down
+                }
+                continue;
             }
 
         }
         }
     else{
-            if(oppy<=dir.y){
+        if(oppy<=dir.y){
             if(distx<=disty){
-                //move left
+                if(mapdir[oppx-1][oppy]==' '){
+                    //move left
+                }
+                if(mapdir[oppx-1][oppy]==MoveBlock.name){
+                    //move both left
+                }
+                continue;
             }
             else{
-                //move up
+                if(mapdir[oppx][oppy+1]==' '){
+                    //move up
+                }
+                if(mapdir[oppx][oppy+1]==Moveblock.name){
+                    //move both up
+                }
+                continue;
             }
         else{
             if(distx<=disty){
-                //move left
+                if(mapdir[oppx-1][oppy]==' '){
+                    //move left
+                }
+                if(mapdir[oppx-1][oppy]==MoveBlock.name){
+                    //move both left
+                }
+                continue;
             }
             else{
-                //move down
+                if(mapdir[oppx][oppy-1]==' '){
+                    //move down
+                }
+                if(mapdir[oppx][oppy-1]==MoveBlock.name){
+                    //move both down
+                }
+                continue;
             }
 
         }

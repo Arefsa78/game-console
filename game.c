@@ -15,9 +15,11 @@ void init_game(Game *game, char *game_name) {
 
     init_rule(rules_file, game->rule);
     init_map(map_file, game->map);
+    init_game_with_map(game* game);
 }
 
 void next_frame(Game *game) {
-    move_object(game->player,game->map, game->rule);
+    opps_decision(game);
+    move_object(game);
 
 }

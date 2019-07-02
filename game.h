@@ -15,13 +15,13 @@ typedef struct Game Game;
 struct Game {
     Rule *rule;
     Map *map;
-    Vector solidBlocks;
-    Vector deathBlocks;
-    Vector raindbs;
-    Vector move_blocks;
-    Vector walls;
-    Vector rpoints;
-    Vector opps;
+    Vector *solidBlocks;
+    Vector *deathBlocks;
+    Vector *raindbs;
+    Vector *move_blocks;
+    Vector *walls;
+    Vector *rpoints;
+    Vector *opps;
 
     Object player;
     Object target;

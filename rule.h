@@ -40,6 +40,7 @@ struct Rule{
     int wall;//
 
     int charecter;//
+    int charecter2;//added
     int target;//
     int object;//
 

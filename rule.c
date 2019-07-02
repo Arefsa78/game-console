@@ -9,6 +9,7 @@ int init_rule(FILE *file, Rule *rule) {
     char line[50];
     while (get_line(file, line))
         parser(line, rule);
+    parser(line, rule);
     return 1;
 }
 
@@ -29,8 +30,8 @@ int parser(char *line, Rule *rule) {
         sscanf(line, "moveblock=%c", &(rule->move_block));
     else if (compare(left, "wall"))
         sscanf(line, "wall=%c", &(rule->wall));
-    else if (compare(left, "charecter"))
-        sscanf(line, "charecter=%c", &(rule->charecter));
+    else if (compare(left, "character"))
+        sscanf(line, "character=%c", &(rule->charecter));
     else if (compare(left, "target"))
         sscanf(line, "target=%c", &(rule->target));
     else if (compare(left, "object"))
@@ -79,15 +80,15 @@ void init_rule2(Rule *rule) {
 }
 
 int can_go(Rule *rule, char c) {
-    if (c == rule->solid_block)
+    if (c == (char)rule->solid_block)
         return 0;
-    if(c == rule->wall)
+    if(c == (char)rule->wall)
         return 0;
     return 1;
 }
 
 int die(Rule *rule, char c) {
-    if(c == rule->death_block)
+    if(c == (char)rule->death_block)
         return 1;
     return 0;
 }

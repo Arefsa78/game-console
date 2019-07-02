@@ -6,14 +6,18 @@
 #include "map.h"
 #include "etc.h"
 #include <time.h>
+#include <conio.h>
 
 int init_map(FILE *file, Map *map) {
     char line[20];
     get_line(file, line);
     sscanf(line, "%dx%d", &(map->height), &(map->width));
+    map->field = (int**)malloc(sizeof(int*)*map->height);
     for (int height = 0; height < map->height; height++) {
-        for (int width = 0; width < map->width; width++)
+        map->field[height] = (int*)malloc(sizeof(int)*map->width);
+        for (int width = 0; width < map->width; width++) {
             map->field[height][width] = fgetc(file);
+        }
         fgetc(file);
     }
 }
@@ -50,4 +54,14 @@ Point find_nearest(Map *map, Point start, char c) {
 
 int dist(Point a, Point b) {
     return abs(a.x - b.x) + abs(a.y - b.y);
+}
+
+void display_map(Map *map) {
+    system("@cls||clear");
+    for(int y = 0; y < map->height; y++){
+        for(int x = 0; x < map->width; x++){
+            printf("%c", map->field[y][x]);
+        }
+        printf("\n");
+    }
 }

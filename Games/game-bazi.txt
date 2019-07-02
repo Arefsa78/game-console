@@ -1,6 +1,7 @@
 solidblock=B
 deathblock=D
 moveblock=M
+raindb=1
 rpoint=*,10,4
 wall=#
 up=w
@@ -12,4 +13,4 @@ time=60
 target=T
 object=O
 attack=5
-Exit=q
+exit=q

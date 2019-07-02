@@ -1,4 +1,3 @@
-
 #include "objects.h"
 
 typedef struct Cell Cell;

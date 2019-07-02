@@ -30,6 +30,7 @@ struct Game {
     Time time;
 
     int score;
+    int game_over;
 };
 
 void init_game(Game *game, char *game_name);
@@ -43,5 +44,23 @@ void opps_move(Game *game);
 void raindbs_move(Game *game);
 
 void make_raindb(Game *game);
+
+void move_another(Object *obj, Game *game);
+
+void move_object(Object *obj, Game *game);
+
+void choose_dir(Object *opp, Point target, Game *game);
+
+void change_map(Game *game);
+
+void set_vector_on_map(Vector *objs, Map *map);
+
+void set_obj_on_map(Object *objs, Map *map);
+
+void end_game(Game *game);
+
+void drop(Game *game);
+
+void set_rpoints(Game* game);
 
 #endif //GAME_CONSOLE_GAME_H

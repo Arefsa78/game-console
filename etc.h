@@ -9,6 +9,8 @@
 #define GAME_CONSOLE_ETC_H
 
 #define NOT_FOUND -404
+#define LOCAL_DIR "F:\\Aref\\P\\c++\\game-console\\Games\\"
+#define db(x) printf(#x"\n")
 
 int get_line(FILE* file,char* line);
 int find(char* line, char x);

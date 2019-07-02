@@ -8,5 +8,6 @@
 #include "game.h"
 
 int run_game(Game* game);
+void display(Game* game);
 
 #endif //GAME_CONSOLE_RUN_H

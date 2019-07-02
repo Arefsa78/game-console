@@ -5,6 +5,7 @@
 #include "objects.h"
 #include "rule.h"
 #include "game.h"
+#include "etc.h"
 
 void init_move(MoveAction *move, Point point, char r) {
     move->move = point;
@@ -15,24 +16,27 @@ void move_object(Object *obj, Game *game) {
     Rule *rule = game->rule;
     Map *map = game->map;
     Point new_pos = plus_point(obj->point, obj->move_dir.move);
-    if (can_go(rule, (char) cell(map, new_pos)))
+    if (can_go(rule, (char) cell(map, new_pos))) {
         obj->point = new_pos;
+    }
     if (die(rule, (char) cell(map, new_pos)))
         obj->point = INVALID_POINT; //DEAD :)
-    move_another(obj, game);
+    if (obj->charecter == (char) game->rule->charecter ||
+            obj->charecter == (char) game->rule->opp.charecter)
+        move_another(obj, game);
 }
 
 void move_another(Object *obj, Game *game) {
     Map *map = game->map;
     Rule *rule = game->rule;
-    if(cell(map, obj->point) == rule->object){
+    if (cell(map, obj->point) == rule->object) {
         game->object.move_dir = obj->move_dir;
         move_object(&game->object, game);
         return;
     }
     for (Vector *it = game->move_blocks; it != NULL; it = it->next) {
-        if(it->data == NULL) continue;
-        Object* block_obj = (Object *) it->data;
+        if (it->data == NULL) continue;
+        Object *block_obj = (Object *) it->data;
         if (same_point(block_obj->point, obj->point)) {
             block_obj->move_dir = obj->move_dir;
             move_object(block_obj, game);
@@ -52,4 +56,8 @@ int same_point(Point a, Point b) {
 void choose_dir(Object *opp, Point target, Game *game) {
 
     opp->move_dir.move = INVALID_POINT;// tahesh bayad opp.move_dir ro avaz konii MERCIIIIII :)
+}
+
+void display_point(Point p) {
+    printf("(%d, %d\n)", p.x, p.y);
 }

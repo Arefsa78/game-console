@@ -19,7 +19,6 @@ int init_map(FILE *file, Map *map) {
 }
 
 void test_init(Map *map, int height, int width) {
-    srand(time(0));
     map->width = width;
     map->height = height;
     map->field = (int **) malloc(sizeof(int *) * height);
@@ -35,6 +34,20 @@ int cell(Map *map, Point x) {
 }
 
 Point find_nearest(Map *map, Point start, char c) {
-    Point result;
-    return result;
+    double min_dist = 1000;
+    Point res = INVALID_POINT;
+    for(int i = 0; i < map->height; i++)
+        for(int j = 0; j < map->width; j++) {
+            Point pos = (Point){j, i};
+            double d = dist(start, pos);
+            if (map->field[i][j] == c && d < min_dist) {
+                res = (Point) {j, i};
+                min_dist = d;
+            }
+        }
+    return res;
+}
+
+int dist(Point a, Point b) {
+    return abs(a.x - b.x) + abs(a.y - b.y);
 }

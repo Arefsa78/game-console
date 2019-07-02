@@ -11,11 +11,10 @@ Vector *pushback(Vector* head, int data_size) {
     new->next = NULL;
     if(head == NULL)
         return new;
-    Vector* rtrn = head;
     while(head->next != NULL)
         head = head->next;
     head->next = new;
-    return rtrn;
+    return new;
 }
 
 void *index(Vector *head, int i, int data_size) {

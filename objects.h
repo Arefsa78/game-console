@@ -16,39 +16,44 @@ typedef struct MoveAction MoveAction;
 typedef struct Time Time;
 typedef struct AttackAction AttackAction;
 
-struct Point{
+struct Point {
     int x;
     int y;
 };
 
-struct MoveAction{
+struct MoveAction {
     char control;
     Point move;
 };
 
-struct Object{
+struct Object {
     Point point;
     char charecter;
     MoveAction move_dir;
 };
 
-struct AttackAction{
+struct AttackAction {
     char control;
     int range;
     int flag;
 };
 
-struct Time{
+struct Time {
     float game_length;
     float frame_length;
     clock_t start_game;
 };
 
-void init_move(MoveAction* move, Point point, char r);
-void move_object(Object* obj, Game* game);
+void init_move(MoveAction *move, Point point, char r);
+
+void move_object(Object *obj, Game *game);
+
 Point plus_point(Point a, Point b);
-void move_another(Object* obj, Game* game);
+
+void move_another(Object *obj, Game *game);
+
 int same_point(Point a, Point b);
-void choose_dir(Object* opp, Point target, Game* game);
+
+void choose_dir(Object *opp, Point target, Game *game);
 
 #endif //GAME_CONSOLE_OBJECTS_H

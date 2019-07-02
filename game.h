@@ -34,6 +34,10 @@ struct Game {
 
 void init_game(Game *game, char *game_name);
 
+void init_game_with_map(Game* game);
+
 void next_frame(Game *game);
+
+void opps_move(Game* game);
 
 #endif //GAME_CONSOLE_GAME_H

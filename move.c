@@ -1,3 +1,4 @@
+#include <conio.h>
 #include "move.h"
 
 void getkey(Game *game) {
@@ -21,8 +22,8 @@ void getkey(Game *game) {
         case game->rule->down:
             init_move(game->player.move_dir, (Point) {+1, 0}, c)
             break;
-<<<<<<< HEAD
-//        case key.p:
+
+        //        case key.p:
 //            init_move(game->player.move_dir, (Point) {0, -1}, c)
 //            break;
 //        case key.a:

@@ -15,11 +15,23 @@ void init_game(Game *game, char *game_name) {
 
     init_rule(rules_file, game->rule);
     init_map(map_file, game->map);
-    init_game_with_map(game* game);
+    init_game_with_map(game);
 }
 
 void next_frame(Game *game) {
     opps_decision(game);
-    move_object(game);
+    move_object(game->player, game);
+    opps_move(game);
+}
 
+void opps_move(Game *game) {
+    Vector* opps = game->opps;
+    for(Vector* it = opps; it != NULL; it = it->next){
+        Object* opp = (Object*)it->data;
+        move_object(opp, game);
+    }
+}
+
+void init_game_with_map(Game *game) {
+    
 }

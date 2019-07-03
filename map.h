@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "objects.h"
+#include "rule.h"
 
 typedef struct Map Map;
 
@@ -27,5 +28,7 @@ Point find_nearest(Map *map, Point start, char c);
 int dist(Point a, Point b);
 
 void display_map(Map *map);
+
+void random_point(Map* map, Rule* rule, Object* obj);
 
 #endif //GAME_CONSOLE_MAP_H

@@ -5,6 +5,8 @@
 #ifndef GAME_CONSOLE_VECTOR_H
 #define GAME_CONSOLE_VECTOR_H
 
+#include "objects.h"
+
 typedef struct Vector Vector;
 
 struct Vector {
@@ -19,5 +21,7 @@ void *index(Vector *head, int i, int data_size);
 int length_list(Vector *head);
 
 void free_vector(Vector* head);
+
+Object* find_by_point(Vector* head, Point x);
 
 #endif //GAME_CONSOLE_VECTOR_H

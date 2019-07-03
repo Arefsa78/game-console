@@ -20,6 +20,11 @@ void move_object(Object *obj, Game *game) {
     if (can_go(rule, (char) cell(map, new_pos))) {
         obj->point = new_pos;
     }
+    if(cell(game->map, new_pos) == (char)rule->rpoints.charecter){
+        game->score += rule->rpoints.point;
+        Object* eated = find_by_point(game->rpoints, new_pos);
+        random_point(map, rule, eated);
+    }
     if (die(rule, (char) cell(map, new_pos)))
         obj->point = INVALID_POINT; //DEAD :)
     if (obj->charecter == (char) game->rule->charecter ||

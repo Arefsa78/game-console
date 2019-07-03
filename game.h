@@ -63,4 +63,12 @@ void drop(Game *game);
 
 void set_rpoints(Game* game);
 
+void check_game_over_end(Game* game);
+
+Point get_dir(char point, Map* map);
+
+void opps_decision(Game *game, Object* opp);
+
+void best_move(Game *game, Object* opp, Point dir, Map* map);
+
 #endif //GAME_CONSOLE_GAME_H

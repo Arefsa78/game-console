@@ -46,8 +46,22 @@ int length_list(Vector *head) {
 void free_vector(Vector *head) {
     for (Vector *it = head; it != NULL;) {
         free(it->data);
-        Vector* tmp = it;
+        Vector *tmp = it;
         it = it->next;
         free(tmp);
     }
+}
+
+Object *find_by_point(Vector *head, Point x) {
+    if (same_point(x, INVALID_POINT))
+        return NULL;
+    for (Vector *it = head; it != NULL; it = it->next) {
+        if (it->data == NULL) continue;
+        Object *obj = (Object *) it->data;
+        if (same_point(obj->point, INVALID_POINT))
+            continue;
+        if(same_point(obj->point, x))
+            return obj;
+    }
+    return NULL;
 }

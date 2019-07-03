@@ -1,7 +1,9 @@
 solidblock=B
 deathblock=D
 moveblock=M
-raindb=1
+raindb=-1
+put=p,D,5
+opp=G,O
 rpoint=*,10,4
 wall=#
 up=w

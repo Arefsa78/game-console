@@ -45,130 +45,121 @@ void init_game(Game *game, char *game_name) {
     game->game_over = 0;
 }
 
-//struct Point *get_dir(char point, struct Map map) {
-//    int y1 = 0;
-//    int x1 = 0;
-//    int y2 = map->height;
-//    int x2 = map->width;
-//    struct Point dir;
-//
-//    for (; x1 <= x2; x1++) {
-//        for (; y1 <= y2; y1++) {
-//            if (map->field[x1][y1] == point) {
-//                dir->X = x1 - 1;
-//                dir->y = y1 - 1;
-//            }
-//        }
-//    }
-//
-//    return dir;
-//}
+Point get_dir(char point, Map *map) {
+    int y1 = 0;
+    int x1 = 0;
+    int y2 = map->height;
+    int x2 = map->width;
+    Point dir;
 
-//void best_move(Game *game, struct Point dir, struct Map map) {
-//    int oppx = game->opps.x;
-//    int oppy = game->opps.y;
+    for (; x1 <= x2; x1++) {
+        for (; y1 <= y2; y1++) {
+            if (map->field[x1][y1] == point) {
+                dir.x = x1 - 1;
+                dir.y = y1 - 1;
+            }
+        }
+    }
+
+    return dir;
+}
+
+void best_move(Game *game, Object *opp, Point dir, Map *map) {
+    if (opp->point.x >= dir.x)
+        opp->move_dir.move = (Point) {-1, 0};
+    else if (opp->point.x < dir.x)
+        opp->move_dir.move = (Point) {+1, 0};
+    else if (opp->point.y >= dir.y)
+        opp->move_dir.move = (Point) {0, -1};
+    else if (opp->point.y < dir.y)
+        opp->move_dir.move = (Point) {0, +1};
+
+//    int oppx = opp->point.x;
+//    int oppy = opp->point.y;
 //    int distx = abs(oppx - dir.x);
 //    int disty = abs(oppy - dir.y);
 //    char **mapdir = map->field;
 //
-//    if (oppx =<dir.x){
+//
+//    if (oppx <= dir.x) {
 //        if (oppy <= dir.y) {
 //            if (distx <= disty) {
 //                if (mapdir[oppx + 1][oppy] == ' ') {
-//                    //move right
+//                    opp->move_dir.move = (Point) {-1, 0};
 //                }
-//                if (mapdir[oppx + 1][oppy] == MoveBlock.name) {
-//                    //move both right
+//                if (mapdir[oppx + 1][oppy] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {-1, 0};
 //                }
-//                continue;
-//            } else {
-//                if (mapdir[oppx][oppy + 1] == ' ') {
-//                    //move up
-//                }
-//                if (mapdir[oppx][oppy + 1] == Moveblock.name) {
-//                    //move both up
-//                }
-//                continue;
-//            }
-//            else{
-//                if (distx <= disty) {
-//                    if (mapdir[oppx + 1][oppy] == ' ') {
-//                        //move right
-//                    }
-//                    if (mapdir[oppx + 1][oppy] == MoveBlock.name) {
-//                        //move both right
-//                    }
-//                    continue;
-//                } else {
-//                    if (mapdir[oppx][oppy - 1] == ' ') {
-//                        //move down
-//                    }
-//                    if (mapdir[oppx][oppy - 1] == MoveBlock.name) {
-//                        //move both down
-//                    }
-//                    continue;
-//                }
-//
+//            } else if (mapdir[oppx][oppy + 1] == ' ') {
+//                opp->move_dir.move = (Point) {0, -1};
+//            } else if (mapdir[oppx][oppy + 1] == (char) game->rule->move_block) {
+//                opp->move_dir.move = (Point) {0, -1};
 //            }
 //        } else {
-//            if (oppy <= dir.y) {
-//                if (distx <= disty) {
-//                    if (mapdir[oppx - 1][oppy] == ' ') {
-//                        //move left
-//                    }
-//                    if (mapdir[oppx - 1][oppy] == MoveBlock.name) {
-//                        //move both left
-//                    }
-//                    continue;
-//                } else {
-//                    if (mapdir[oppx][oppy + 1] == ' ') {
-//                        //move up
-//                    }
-//                    if (mapdir[oppx][oppy + 1] == Moveblock.name) {
-//                        //move both up
-//                    }
-//                    continue;
+//            if (distx <= disty) {
+//                if (mapdir[oppx + 1][oppy] == ' ') {
+//                    opp->move_dir.move = (Point) {+1, 0};
 //                }
-//                else{
-//                    if (distx <= disty) {
-//                        if (mapdir[oppx - 1][oppy] == ' ') {
-//                            //move left
-//                        }
-//                        if (mapdir[oppx - 1][oppy] == MoveBlock.name) {
-//                            //move both left
-//                        }
-//                        continue;
-//                    } else {
-//                        if (mapdir[oppx][oppy - 1] == ' ') {
-//                            //move down
-//                        }
-//                        if (mapdir[oppx][oppy - 1] == MoveBlock.name) {
-//                            //move both down
-//                        }
-//                        continue;
-//                    }
-//
+//                if (mapdir[oppx + 1][oppy] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {+1, 0};
+//                }
+//            } else {
+//                if (mapdir[oppx][oppy - 1] == ' ') {
+//                    opp->move_dir.move = (Point) {0, +1};
+//                }
+//                if (mapdir[oppx][oppy - 1] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {0, +1};
 //                }
 //            }
+//
+//        }
+//    } else {
+//        if (oppy <= dir.y) {
+//            if (distx <= disty) {
+//                if (mapdir[oppx - 1][oppy] == ' ') {
+//                    opp->move_dir.move = (Point) {-1, 0};
+//
+//                }
+//                if (mapdir[oppx - 1][oppy] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {-1, 0};
+//                }
+//            } else if (mapdir[oppx][oppy + 1] == ' ') {
+//                opp->move_dir.move = (Point) {0, -1};
+//            } else if (mapdir[oppx][oppy + 1] == (char) game->rule->move_block) {
+//                opp->move_dir.move = (Point) {0, -1};
+//            }
+//        } else {
+//            if (distx <= disty) {
+//                if (mapdir[oppx - 1][oppy] == ' ') {
+//                    opp->move_dir.move = (Point) {-1, 0};
+//                }
+//                if (mapdir[oppx - 1][oppy] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {-1, 0};
+//                }
+//            } else {
+//                if (mapdir[oppx][oppy - 1] == ' ') {
+//                    opp->move_dir.move = (Point) {0, +1};
+//                }
+//                if (mapdir[oppx][oppy - 1] == (char) game->rule->move_block) {
+//                    opp->move_dir.move = (Point) {0, +1};
+//                }
+//            }
+//
 //        }
 //    }
-//
-//}
+}
 
-//void opps_decision(Game *game) {
-//
-//    char point;
-//    point = opp.target;
-//    struct Point dir = get_dir(opp.name, point, game->map);
-//    opp.move = best_move(game, dir, game->map);
-//}
+void opps_decision(Game *game, Object *opp) {
+    Point dir = find_nearest(game->map, opp->point, (char) game->rule->opp.target);
+    best_move(game, opp, dir, game->map);
+}
 
 void next_frame(Game *game) {
+    db(-10);
     opps_move(game);
     move_object(&game->player, game);
     if (same_point(game->player.point, INVALID_POINT))
         game->game_over = 1;
-    opps_move(game);
     db(0);
     raindbs_move(game);
     db(1);
@@ -176,6 +167,7 @@ void next_frame(Game *game) {
     db(2);
     change_map(game);
     db(3);
+//    check_game_over_end(game);
 }
 
 void opps_move(Game *game) {
@@ -183,7 +175,7 @@ void opps_move(Game *game) {
     for (Vector *it = opps; it != NULL; it = it->next) {
         if (it->data == NULL) continue;
         Object *opp = (Object *) it->data;
-        choose_dir(opp, find_nearest(game->map, opp->point, game->rule->opp.target), game);
+        opps_decision(game, opp);
         move_object(opp, game);
     }
 }
@@ -235,7 +227,12 @@ void raindbs_move(Game *game) {
     for (Vector *it = raindbs; it != NULL; it = it->next) {
         if (it->data == NULL) continue;
         Object *raindb = (Object *) it->data;
+        if (same_point(raindb->point, INVALID_POINT)) continue;
         move_object(raindb, game);
+        if (cell(game->map, raindb->point) == (char) game->rule->charecter)
+            game->game_over = 1;
+        if (is_obj(game->rule, (char) cell(game->map, raindb->point)))
+            raindb->point = INVALID_POINT;
     }
 }
 
@@ -279,6 +276,7 @@ void set_vector_on_map(Vector *objs, Map *map) {
     for (Vector *it = objs; it != NULL; it = it->next) {
         if (it->data == NULL) continue;
         Object *obj = (Object *) it->data;
+        if (same_point(obj->point, INVALID_POINT)) continue;
         map->field[obj->point.y][obj->point.x] = obj->charecter;
     }
 }
@@ -305,10 +303,10 @@ void end_game(Game *game) {
 }
 
 void drop(Game *game) {
-    Rule* rule = game->rule;
-    if(rule->put.number <= 0)
+    Rule *rule = game->rule;
+    if (rule->put.number <= 0)
         return;
-    char ob = (char)rule->put.charecter;
+    char ob = (char) rule->put.charecter;
     Object *new_obj = (Object *) malloc(sizeof(Object));
     new_obj->point = game->player.point;
     new_obj->charecter = ob;
@@ -329,15 +327,28 @@ void drop(Game *game) {
 
 void set_rpoints(Game *game) {
     int n = 0;
-    while(n < game->rule->rpoints.number){
-        Point x = {rand()%game->map->width,rand()%game->map->height};
-        if(is_obj(game->rule, (char)cell(game->map, x)))
-            continue;
-        n += 1;
+    while (n < game->rule->rpoints.number) {
         Object *new_obj = (Object *) malloc(sizeof(Object));
-        new_obj->point = x;
-        new_obj->charecter = (char)game->rule->rpoints.charecter;
+        random_point(game->map, game->rule, new_obj);
+        new_obj->charecter = (char) game->rule->rpoints.charecter;
         Vector *new = pushback(game->rpoints, sizeof(Object));
         new->data = new_obj;
+        n += 1;
+    }
+}
+
+void check_game_over_end(Game *game) {
+    if (cell(game->map, game->player.point) == (char) game->rule->death_block) {
+        game->game_over = 1;
+        return;
+    }
+    for (Vector *it = game->raindbs; it != NULL; it = it->next) {
+        if (it->data == NULL) continue;
+        Object *obj = (Object *) it->data;
+        if (same_point(obj->point, INVALID_POINT)) continue;
+        if (same_point(obj->point, game->player.point)) {
+            game->game_over = 1;
+            return;
+        }
     }
 }

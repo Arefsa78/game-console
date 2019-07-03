@@ -94,14 +94,14 @@ int die(Rule *rule, char c) {
 }
 
 int is_obj(Rule *rule, char c) {
-    return  c == rule->solid_block ||
-            c == rule->death_block ||
-            c == rule->move_block ||
-            c == rule->wall ||
-            c == rule->charecter ||
-            c == rule->target ||
-            c == rule->object ||
-            c == rule->rpoints.charecter ||
-            c == rule->opp.charecter;
+    return  c == (char)rule->solid_block ||
+            c == (char)rule->death_block ||
+            c == (char)rule->move_block ||
+            c == (char)rule->wall ||
+            c == (char)rule->charecter ||
+            c == (char)rule->target ||
+            c == (char)rule->object ||
+            c == (char)rule->rpoints.charecter ||
+            c == (char)rule->opp.charecter;
 }
 

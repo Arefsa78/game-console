@@ -12,9 +12,9 @@ int init_map(FILE *file, Map *map) {
     char line[20];
     get_line(file, line);
     sscanf(line, "%dx%d", &(map->height), &(map->width));
-    map->field = (int**)malloc(sizeof(int*)*map->height);
+    map->field = (int **) malloc(sizeof(int *) * map->height);
     for (int height = 0; height < map->height; height++) {
-        map->field[height] = (int*)malloc(sizeof(int)*map->width);
+        map->field[height] = (int *) malloc(sizeof(int) * map->width);
         for (int width = 0; width < map->width; width++) {
             map->field[height][width] = fgetc(file);
         }
@@ -34,15 +34,17 @@ void test_init(Map *map, int height, int width) {
 }
 
 int cell(Map *map, Point x) {
+    if (same_point(x, INVALID_POINT))
+        return ' ';
     return map->field[x.y][x.x];
 }
 
 Point find_nearest(Map *map, Point start, char c) {
     double min_dist = 1000;
     Point res = INVALID_POINT;
-    for(int i = 0; i < map->height; i++)
-        for(int j = 0; j < map->width; j++) {
-            Point pos = (Point){j, i};
+    for (int i = 0; i < map->height; i++)
+        for (int j = 0; j < map->width; j++) {
+            Point pos = (Point) {j, i};
             double d = dist(start, pos);
             if (map->field[i][j] == c && d < min_dist) {
                 res = (Point) {j, i};
@@ -58,10 +60,20 @@ int dist(Point a, Point b) {
 
 void display_map(Map *map) {
     system("@cls||clear");
-    for(int y = 0; y < map->height; y++){
-        for(int x = 0; x < map->width; x++){
+    for (int y = 0; y < map->height; y++) {
+        for (int x = 0; x < map->width; x++) {
             printf("%c", map->field[y][x]);
         }
         printf("\n");
     }
+}
+
+void random_point(Map *map, Rule *rule, Object *obj) {
+    int x = rand() % map->width;
+    int y = rand() % map->height;
+    while (is_obj(rule, (char)cell(map, (Point) {x, y}))) {
+        x = rand() % map->width;
+        y = rand() % map->height;
+    }
+    obj->point = (Point) {x, y};
 }

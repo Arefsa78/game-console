@@ -3,6 +3,7 @@
 //
 
 #include <time.h>
+#include <stdlib.h>
 #include "run.h"
 #include "move.h"
 #include "etc.h"
@@ -18,6 +19,7 @@ int run_game(Game *game) {
             db(frame);
             next_frame(game);
             display(game);
+            db(display);
             if(game->game_over) {
                 db(over);
                 end_game(game);
@@ -27,8 +29,7 @@ int run_game(Game *game) {
             start_frame = clock();
             display_point(game->player.point);
             display_point(game->player.move_dir.move);
-            printf("rule: %c\n", game->rule->exit);
-            printf("rain: %d\n", game->rule->raindb);
+            printf("exit: %c\n", game->rule->exit);
         }
     }
     if(game == NULL)
@@ -38,5 +39,7 @@ int run_game(Game *game) {
 }
 
 void display(Game *game) {
+    system("@cls||clear");
+    printf("Score: %d\n", game->score);
     display_map(game->map);
 }

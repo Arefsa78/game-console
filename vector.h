@@ -24,4 +24,6 @@ void free_vector(Vector* head);
 
 Object* find_by_point(Vector* head, Point x);
 
+void clean_vector(Vector* head);
+
 #endif //GAME_CONSOLE_VECTOR_H

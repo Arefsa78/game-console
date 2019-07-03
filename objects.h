@@ -51,4 +51,5 @@ int same_point(Point a, Point b);
 
 void display_point(Point p);
 
+
 #endif //GAME_CONSOLE_OBJECTS_H

@@ -24,7 +24,6 @@ int main() {
         int n = choose_game(game_list);
 
         Game *game = (Game *) malloc(sizeof(Game));
-        db(game);
         init_game(game, (char *) index(game_list, n, sizeof(char *)));
         run_game(game);
         free_vector(game_list);

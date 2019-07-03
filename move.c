@@ -22,6 +22,10 @@ void getkey(Game *game) {
         drop(game);
     else if (c == (char) game->rule->exit)
         game->game_over = 1;
+    else if(c == ' ')
+        game->attack = 1;
+//    else if (c == (char)' ')
+//        game.
 
     //        case key.p:
 //            init_move(game->player.move_dir, (Point) {0, -1}, c)
@@ -34,17 +38,10 @@ void getkey(Game *game) {
 
 }
 
-//void puter(struct Put put, int x, int y, char **map) {// prototype baraye function put kardan/
-//    if (put.lim > 0) {
-//        map[x][y] == put.block;
-//        put.lim -= 1;
-//    }
-//}
+//void attack(MoveAction ma, AttackAction att, Object* obj, Map *map) {
 //
-//void attack(MoveAction ma, AttackAction att, Object obj, char **map) {
-//
-//    int objx = obj.point.x;
-//    int objy = obj.point.x;
+//    int objx = obj->point.x;
+//    int objy = obj->point.y;
 //    int attx = 0;
 //    int atty = 0;
 //
@@ -341,3 +338,10 @@ void getkey(Game *game) {
 //
 //    }
 //}
+//void puter(struct Put put, int x, int y, char **map) {// prototype baraye function put kardan/
+//    if (put.lim > 0) {
+//        map[x][y] == put.block;
+//        put.lim -= 1;
+//    }
+//}
+//

@@ -4,6 +4,7 @@
 
 #include <malloc.h>
 #include "vector.h"
+#include "etc.h"
 
 Vector *pushback(Vector *head, int data_size) {
     Vector *new = (Vector *) malloc(sizeof(Vector) * 1);
@@ -64,4 +65,27 @@ Object *find_by_point(Vector *head, Point x) {
             return obj;
     }
     return NULL;
+}
+
+void clean_vector(Vector *head) {
+    Vector* last = head;
+    head = head->next;
+    for (Vector *it = head; it != NULL;) {
+        if(it->data == NULL){
+            last->next = it->next;
+            Vector* tmp = it;
+            it = it->next;
+            free(tmp);
+            continue;
+        }
+        if(same_point(((Object*) it->data)->point,INVALID_POINT)){
+            last->next = it->next;
+            Vector* tmp = it;
+            it = it->next;
+            free(tmp);
+            continue;
+        }
+        last = last->next;
+        it = it->next;
+    }
 }

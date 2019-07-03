@@ -154,5 +154,6 @@ void choose_dir(Object *opp, Point target, Game *game) {
 }
 
 void display_point(Point p) {
-    printf("(%d, %d\n)", p.x, p.y);
+//    printf("(%d, %d)\n", p.x, p.y);
 }
+

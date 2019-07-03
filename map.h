@@ -29,6 +29,8 @@ int dist(Point a, Point b);
 
 void display_map(Map *map);
 
-void random_point(Map* map, Rule* rule, Object* obj);
+void random_point(Map *map, Rule *rule, Object *obj);
+
+int is_in_area(Map *map, Point x);
 
 #endif //GAME_CONSOLE_MAP_H

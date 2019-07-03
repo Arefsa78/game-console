@@ -105,3 +105,6 @@ int is_obj(Rule *rule, char c) {
             c == (char)rule->opp.charecter;
 }
 
+int is_obj_opp(Rule *rule, char c) {
+    return is_obj(rule, c) && c != (char)rule->opp.target;
+}

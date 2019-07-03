@@ -14,24 +14,24 @@ typedef struct Point_R Point_R;
 typedef struct Opp_R Opp_R;
 typedef struct Put_R Put_R;
 
-struct Point_R{
+struct Point_R {
     int charecter;
     int point;
     int number;
 };
 
-struct Opp_R{
+struct Opp_R {
     int charecter;
     int target;
 };
 
-struct Put_R{
+struct Put_R {
     int charecter;
     int control;
     int number;
 };
 
-struct Rule{
+struct Rule {
     char game_name[20];
     int solid_block;//
     int death_block;//
@@ -55,10 +55,17 @@ struct Rule{
 };
 
 int init_rule(FILE *file, Rule *rule);
-int parser(char* line, Rule* rule);
+
+int parser(char *line, Rule *rule);
+
 void init_rule2(Rule *rule);
-int can_go(Rule* rule, char c);
-int die(Rule* rule, char c);
-int is_obj(Rule* rule, char c);
+
+int can_go(Rule *rule, char c);
+
+int die(Rule *rule, char c);
+
+int is_obj(Rule *rule, char c);
+
+int is_obj_opp(Rule* rule, char c);
 
 #endif //GAME_CONSOLE_RULE_H

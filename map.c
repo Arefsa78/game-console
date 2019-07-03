@@ -59,7 +59,6 @@ int dist(Point a, Point b) {
 }
 
 void display_map(Map *map) {
-    system("@cls||clear");
     for (int y = 0; y < map->height; y++) {
         for (int x = 0; x < map->width; x++) {
             printf("%c", map->field[y][x]);
@@ -71,9 +70,21 @@ void display_map(Map *map) {
 void random_point(Map *map, Rule *rule, Object *obj) {
     int x = rand() % map->width;
     int y = rand() % map->height;
-    while (is_obj(rule, (char)cell(map, (Point) {x, y}))) {
+    while (is_obj(rule, (char) cell(map, (Point) {x, y}))) {
         x = rand() % map->width;
         y = rand() % map->height;
     }
     obj->point = (Point) {x, y};
+}
+
+int is_in_area(Map *map, Point x) {
+    if(x.x < 0)
+        return 0;
+    if(x.x >= map->width)
+        return 0;
+    if (x.y < 0)
+        return 0;
+    if (x.y >= map->height)
+        return 0;
+    return 1;
 }

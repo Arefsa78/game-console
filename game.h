@@ -31,6 +31,7 @@ struct Game {
 
     int score;
     int game_over;
+    int attack;
 };
 
 void init_game(Game *game, char *game_name);
@@ -70,5 +71,9 @@ Point get_dir(char point, Map* map);
 void opps_decision(Game *game, Object* opp);
 
 void best_move(Game *game, Object* opp, Point dir, Map* map);
+
+void clean_nulls(Game* game);
+
+void player_attack(Game* game);
 
 #endif //GAME_CONSOLE_GAME_H
